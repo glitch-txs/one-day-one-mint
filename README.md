@@ -1,13 +1,10 @@
 # Sample Hardhat Project
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+1. Run npm install
 
-Try running some of the following tasks:
+2. Modified the Smart Contract to your taste, add token name and the URI as well.
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.ts
-```
+3. Create an .ENV file with an Alchemy KEY, you wallet private key, and an Etherscan key. This keys will be used in the hardhat.config.ts file. You can set the network where to smart contract will be deployed there.
+
+To Deploy run on terminal: `npx hardhat run scripts/deploy.js --network <name of network>`
+For etherscan verification please watch this awesome explanation: https://youtu.be/x1a5lrW-9fo?list=PLnSHr0dqnCcM3VqpsN3-TVmN1wHMLsjNs
