@@ -3,9 +3,8 @@ pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/security/Pausable.sol";
 
-contract OneDayOneMint is ERC721, Pausable, Ownable {
+contract OneDayOneMint is ERC721, Ownable {
 
     uint256 public totalSupply;
     uint256 public mintPrice;
@@ -17,6 +16,9 @@ contract OneDayOneMint is ERC721, Pausable, Ownable {
     //Mint starting and ending date in timestamp
     uint256 public mintStart;
     uint256 public mintEnd;
+
+    // pausable
+    bool public paused;
 
     //Set your token name inside ERC721() 
     constructor(uint256 _start, uint256 _end, uint256 _nftPrice) ERC721("Token", "TKN") {
@@ -45,6 +47,8 @@ contract OneDayOneMint is ERC721, Pausable, Ownable {
     }
 
     function safeMint() public payable MintAllowance {
+        require(!paused, "Minting is paused");
+        
         _safeMint(msg.sender, _tokenId);
         totalSupply += 1;
         _tokenId += 1;
@@ -71,15 +75,11 @@ contract OneDayOneMint is ERC721, Pausable, Ownable {
     }
 
     //Pausable functions
-    function pause() public onlyOwner {
-        _pause();
+    function pauseMint() public onlyOwner {
+        paused = true;
     }
 
-    function unpause() public onlyOwner {
-        _unpause();
-    }
-
-    function _beforeTokenTransfer(address from, address to, uint256 tokenId) internal whenNotPaused override {
-        super._beforeTokenTransfer(from, to, tokenId);
+    function unpauseMint() public onlyOwner {
+        paused = false;
     }
 }
