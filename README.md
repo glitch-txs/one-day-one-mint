@@ -1,4 +1,4 @@
-# Sample Hardhat Project
+# One Day One Mint
 
 1. Run npm install
 
