@@ -2,7 +2,7 @@
 
 1. Run npm install
 
-2. Modified the Smart Contract to your taste, add token name and the URI as well.
+2. Modify the Smart Contract to your taste, add token name and the URI as well.
 
 3. Create an .ENV file with an Alchemy KEY, you wallet private key, and an Etherscan key. This keys will be used in the hardhat.config.ts file. You can set the network where to smart contract will be deployed there.
 
